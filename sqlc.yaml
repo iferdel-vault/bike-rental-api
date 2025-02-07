@@ -1,8 +1,17 @@
 version: "2"
 sql:
-  - schema: "sql/schema"
-    queries: "sql/queries"
-    engine: sqlite
+  - schema: "internal/sql/schema"
+    queries: "internal/sql/queries/admin"
+    engine: "sqlite"
     gen:
       go:
-        out: "internal/database"
+        package: "admin"
+        out: "internal/database/admin"
+
+  - schema: "internal/sql/schema"
+    queries: "internal/sql/queries/user"
+    engine: "sqlite"
+    gen:
+      go:
+        package: "user"
+        out: "internal/database/user"

@@ -1,0 +1,15 @@
+services:
+  bikerentalapi:
+    build:
+      context: .          
+      dockerfile: ./Dockerfile
+      target: dev
+    container_name: bikerentalapi
+    volumes:
+      # go-air dependant
+      - ./cmd/api:/app/cmd/api
+      - ./internal:/app/internal
+      - ./go.mod:/app/go.mod   
+      - ./go.sum:/app/go.sum
+    ports:
+      - "8080:8080"
