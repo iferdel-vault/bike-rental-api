@@ -2,7 +2,7 @@
 // versions:
 //   sqlc v1.28.0
 
-package admin
+package database
 
 import (
 	"context"

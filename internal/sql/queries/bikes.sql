@@ -1,4 +1,20 @@
--- name: ListBikes :many
+---------------------------------
+-- USER
+---------------------------------
+
+-- name: ListBikesAvailable :many
+SELECT 
+	latitude, 
+	longitude 
+FROM bikes
+WHERE is_available;
+
+
+---------------------------------
+-- ADMIN
+---------------------------------
+
+-- name: ListBikesAdmin :many
 SELECT 
 	id,
 	is_available,
@@ -8,7 +24,7 @@ SELECT
 	updated_at
 FROM bikes;
 
--- name: CreateBike :one
+-- name: CreateBikeAdmin :one
 INSERT INTO bikes (is_available, latitude, longitude)
 VALUES (
 	1,
@@ -17,7 +33,7 @@ VALUES (
 )
 RETURNING *;
 
--- name: UpdateBikeToAvailable :exec
+-- name: UpdateBikeToAvailableAdmin :exec
 UPDATE bikes 
 SET 
 	is_available = 1,
@@ -26,7 +42,7 @@ SET
 	updated_at = CURRENT_TIMESTAMP
 WHERE id = ? AND is_available = 0;
 
--- name: UpdateBikeToUnavailable :exec
+-- name: UpdateBikeToUnavailableAdmin :exec
 UPDATE bikes 
 SET 
 	is_available = 0,
